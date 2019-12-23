@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="succotash" ng-controller="MasterCtrl as master">
+<head>
+  <meta charset="UTF-8">
+  <title>UPMC Online Pharmacy</title>
+  <link rel="stylesheet" href="./css/bulma-customized.css" media="all">
+  <link rel="stylesheet" href="./css/font-awesome.min.css" media="all">
+  <link rel="stylesheet" href="./css/main.css" media="all">
+  <link rel="stylesheet" href="./css/home.css" media="all">
+  <link rel="stylesheet" href="./css/productline.css" media="all">
+  <link href="./css/peertopeer-chat.css" rel="stylesheet">
+  <link href="./css/ua_reg_ext.css" rel="stylesheet">
+  <link href="./css/peertopeer-call.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Styles -->
+  <!-----------------------------------------------<link href="../main/css/main.css" rel="stylesheet"> -->
+  <link href="css/conference.css" rel="stylesheet">
+</head>
+<body>
+  <header ng-include="'partials/nav.html'"></header>
+  <div class="container is-fluid">
+    <main style="margin-top: 40px;" ui-view autoscroll></main>
+  </div>
+  <footer class="footer" ng-include="'partials/footer.html'"></footer>
+  <div ng-include="'partials/login-modal.html'"></div>
+  <div ng-include="'partials/registration-modal.html'"></div>
+  <!-- ----------------------------- -->
+  <!-- Demo -->
+  <div id="container">
+      <h2 id="title">User Agent registration demo</h2>
+      <input type="text" name="userId" id="userId" placeholder="Set your user Id" autocomplete="off">
+      <button type="button" id="register">Register</button>
+      <button type="button" id="unregister">Unregister</button>
+      <div id="status"></div>
+      <div id="my-number"></div>
+  </div>
+
+  <main role="main" class="container">
+
+    <h1 >ApiRTC Call demo</h1>
+    <p class="lead">This client demonstrates how to establish an audio, video peer to peer call or a screensharing with your contact using apiRTC</p>
+<!--
+    <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
+    <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+-->
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button type="button" id="addressBook" data-toggle="dropdown" class="btn btn-success dropdown-toggle">
+            <span class="fa fa-address-book" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu" id="addressBookDropDown">
+                <li><a id="client1" href="#">No other connected users</a></li>
+            </ul>
+        </span>
+        <input type="text" id="number" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+        <span class="input-group-btn">
+            <button type="button" id="callAudio" class="btn btn-success">
+                <span class="fa fa-phone" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="callVideo" class="btn btn-success">
+                <span class="fa fa-video-camera" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="shareScreen" class="btn btn-success">
+                <span class="fa fa-desktop" aria-hidden="true"></span>
+            </button>
+        </span>
+    </div>
+    <div class="row" style="position:absolute;"></div>
+        <div id="hangupButtons">
+        </div>
+    </div>
+    <div class="row" style="position:absolute;"></div>
+        <div id="streamButtons">
+        </div>
+    </div>
+    <legend id="my-number"></legend>
+    <div class="row" style="position:absolute;">
+        <div id="remote-container" style="width:100%;">
+        </div>
+        <div id="local-container">
+        </div>
+    </div>
+  </main>
+
+  <div id="container">
+    <h2 id="title">Conference demo</h2>
+
+    <form id="create">
+        <input type="text" name="conference_name" id="conference-name" placeholder="Enter your Conference name" autocomplete="off">
+        <button type="submit" id="create_conference">Join conference</button>
+    </form>
+
+    <div id="conference">
+        <div id="remote-container"></div>
+        <div id="local-container"></div>
+    </div>
+  </div>
+
+  <!-- Demo -->
+  <div id="container">
+    <h2 id="title">1 - 1 chat demo</h2>
+
+    <div id="contact-selector">
+        <input type="text" name="contact_id" id="contact-id" placeholder="Contact ID" autocomplete="off">
+        <button id="start-chat">Chat</button>
+        <legend id="my-number-legend">Your contact ID is : <span id="my-number"></span></legend>
+    </div>
+
+    <div id="chat">
+        <h3>Chat with <span id="active-contact-id"></span></h3>
+        <div id="chat-body">
+            <ul id="message-list"></ul>
+            <ul id="active-chats">
+                <li><b>Active chats</b></li>
+            </ul>
+        </div>
+        <div id="chat-footer">
+            <input id="typing-area" placeholder="Type a message!" type="text" />
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+</div>
+    <!-- --------------------------------------------- -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"><script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script><script type="text/javascript" src="https://cloud.apizee.com/apiRTC/apiRTC-latest.min.js"></script>
+
+  <script src="./javascript/multiconference.js"></script>
+  <script type="text/javascript" src="./javascript/p2pchat.js"></script>
+  <script type="text/javascript" src="./javascript/multiconference.js"></script>
+  <script type="text/javascript" src="./javascript/ua_reg_ext.js"></script>
+  <script type="text/javascript" src="./javascript/peertopeer-call.js"></script>
+  
+
+
+  <!-- <script>
+    'use strict';
+    // ApiRTC Client code
+    apiRTC.init({
+        apiKey: "7c90f9895fa11bf409ffcdc284e5efe6",
+        onReady: function() {
+            console.log('Session created with sessionId' + apiRTC.session.apiCCId);
+            var webRTCClient = apiRTC.session.createWebRTCClient({
+                localVideo: "myLocalVideo",
+                miniLocalVideo: "myMiniVideo",
+                remoteVideo: "myRemoteVideo",
+                status: "status",
+                command: "command"
+            });
+        }
+    });
+  </script> -->
+  <!-- Scripts -->
+  <script src="./javascript/angular.js"></script>
+  <script src="./javascript/angular-ui-router.js"></script>
+  <script src="./javascript/succotash.js"></script>
+  <script src="./javascript/succotash.states.js"></script>
+  <script src="./javascript/succotash.search.js"></script>
+  <!------------------------------------- <script src="./javascript/templates.js"></script> -->
+  <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+
+</body>
+</html>
